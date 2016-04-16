@@ -1,10 +1,35 @@
-<h2>{{booksShowCtrl.book.title}}</h2>
-<hr>
+<a href='/'>Home</a>
 <div class="row">
-	<!-- Here, add the display of the book info,
-       the buttons for editing or deleting,
-       the form and buttons that will show if you
-       click edit. Don't forget that all of those
-       buttons and forms will need some angular
-       functionality! -->
+	<div class="col-xs-6">
+		<img ng-src="{{booksShowCtrl.book.image}}" class="img-responsive">
+	</div>
+	<div class="col-xs-6">
+		<p><strong ng-hide="editing">Author:</strong> {{booksShowCtrl.book.author}}</p>
+		<p><strong ng-hide="editing">Release Date:</strong> {{booksShowCtrl.book.releaseDate}}</p>
+		<br>
+
+		<!-- buttons to edit/delete -->
+		<button class='btn btn-default' ng-hide="editing" ng-click="editing = true">Edit <span class="glyphicon glyphicon-pencil"></span></button>
+		<button class='btn btn-default' ng-click="booksShowCtrl.deleteBook(booksShowCtrl.book)">Delete <span class="glyphicon glyphicon-trash"></span></button>
+		<button class='btn btn-default' ng-show="editing" ng-click="booksShowCtrl.editBook(booksShowCtrl.book); editing = false">Save Changes</button>
+		<!-- edit form -->
+		<div ng-show="editing">
+			<br>
+	    <form ng-show="editing" ng-submit="booksShowCtrl.editBook(booksShowCtrl.book)">
+	      <div class="form-group">
+	        <input type="text" ng-model="booksShowCtrl.book.title" class="form-control" placeholder="Title">
+	      </div>
+	      <div class="form-group">
+	        <input type="text" ng-model="booksShowCtrl.book.author" class="form-control" placeholder="Author">
+	      </div>
+	      <div class="form-group">
+	        <input type="text" ng-model="booksShowCtrl.book.image" class="form-control" placeholder="Image">
+	      </div>
+	      <div class="form-group">
+	        <input type="text" ng-model="booksShowCtrl.book.releaseDate" class="form-control" placeholder="Release Date">
+	      </div>
+				<button class = 'btn btn-default'><a href='/'>Cancel - Return Home</button>
+	    </form>
+		</div>
+	</div>
 </div>
